@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div id="container"   >
+    <script src="main.js"></script>
+
+    <div id="color">
+        <div class="color-picker" style="background-color:red ;"></div>
+        <div class="color-picker" style="background-color:yellow ;"></div>
+        <div class="color-picker" style="background-color:orange ;"></div>
+        <div class="color-picker" style="background-color:green ;"></div>
+        <div class="color-picker" style="background-color:blue ;"></div>
+        <div class="color-picker" style="background-color:black ;"></div>
+    </div>
+    <button id="btn-clear">clear</button>
+    <input id="size" type="text" value="2" onchange="changeSize()">
+    <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+    </canvas>
+</div>
+
+</body>
+
+<script>
+    
+const canvas = document.querySelector('#myCanvas');
+const ctx = canvas.getContext('2d');
+
+ctx.fillStyle = 'red';
+
+function draw(x,y,z){
+    const path1 = new Path2D();
+    path1.arc(x, y, z, 0, 2* Math.PI);
+    ctx.fill(path1);
+}
+
+let mousedown = false;
+
+canvas.addEventListener('mousedown', e =>{
+ mousedown = true;
+})
+
+canvas.addEventListener('mouseup', e=>{
+    mousedown = false;
+})
+
+canvas.addEventListener('mousemove', e=>{
+
+    if(mousedown){
+        const rect = canvas.getBoundingClientRect()
+    
+    draw(e.clientX - rect.left,e.clientY - rect.top, changeSize());
+          
+    }
+})
+
+const colorpickers = [...document.querySelectorAll('.color-picker')];
+colorpickers.forEach(e =>{
+    e.addEventListener('click', a =>{
+        ctx.fillStyle =a.target.style.backgroundColor;
+    })
+})
+
+
+document.querySelector('#btn-clear').addEventListener('click', ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+})
+
+function changeSize(){
+            const size = document.querySelector('#size');
+            return size.value;
+        }
+
+
+</script>
+</html>
