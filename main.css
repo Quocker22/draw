@@ -41,14 +41,15 @@ body{
 #btn-clear{
     position: absolute;
     left: 0;
-    bottom: 50px;
+    bottom: 500px;
     padding: 10px;
 }
 
 #size{
     position: absolute;
-    width: 20px;
-    left: 0;
-    bottom: 0;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top: 100;
     padding: 10px;
 }
