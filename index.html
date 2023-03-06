@@ -114,11 +114,13 @@ thang1.fillText("3. 2001216166, Nguyễn Xuân Thắng, TV", 50, 100);
 const canvas = document.querySelector('#myCanvas');
 const ctx = canvas.getContext('2d');
 ctx.fillStyle = 'black';
+
 function draw(x,y,z){
     const path1 = new Path2D();
     path1.arc(x, y, z, 0, 2* Math.PI);
     ctx.fill(path1);
 }
+
 let mousedown = false;
 canvas.addEventListener('mousedown', e =>{
     mousedown = true;
@@ -132,6 +134,7 @@ canvas.addEventListener('mousemove', e=>{
         draw(e.clientX - rect.left,e.clientY - rect.top, changeSize());
     }
 })
+
 const colorPicker = document.querySelector('.color-picker');
     colorPicker.addEventListener('change', () => {
         const colorValue = colorPicker.value;
@@ -141,10 +144,7 @@ const colorPicker = document.querySelector('.color-picker');
 document.querySelector('#btn-clear').addEventListener('click', ()=>{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 })
-const slider = document.querySelector('.slider');
-  slider.addEventListener('input', () => {
-  const value = slider.value;
-  });
+
 function changeSize(){
     const size = document.querySelector('#size');
     return size.value;
